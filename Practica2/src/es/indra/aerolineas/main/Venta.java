@@ -3,10 +3,11 @@
  */
 package es.indra.aerolineas.main;
 
-import es.indra.aerolineas.bean.Aerolinea;
-import es.indra.aerolineas.bean.Empleado;
-import es.indra.aerolineas.bean.Pasajero;
-import es.indra.aerolineas.bean.Vuelo;
+import es.indra.aerolineas.bean.IAerolinea;
+import es.indra.aerolineas.bean.impl.Aerolinea;
+import es.indra.aerolineas.bean.impl.Empleado;
+import es.indra.aerolineas.bean.impl.Pasajero;
+import es.indra.aerolineas.bean.impl.Vuelo;
 
 /**
  * @author josejarizav
@@ -30,7 +31,7 @@ public class Venta {
 
 		Vuelo[] vuelos = creaVuelos();
 		
-		Aerolinea aa = new Aerolinea(10, "American Airlines",vuelos);
+		IAerolinea aa = new Aerolinea(10, "American Airlines",vuelos);
 		
 		aa.consultarVuelos("MAD");
 		aa.consultarVuelos("MAD","NYC");

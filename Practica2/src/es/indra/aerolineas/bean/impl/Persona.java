@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.indra.aerolineas.bean;
+package es.indra.aerolineas.bean.impl;
 
 /**
  * @author aula16
@@ -13,6 +13,15 @@ public abstract class Persona {
 	protected String apellido;
 	protected String dni;
 	private int id;
+	
+	/*
+	 * Contructor de la clase sin variables
+	 */
+	public Persona() {
+		super();
+	}
+	
+	abstract public String solicitarInformacion();
 	
 	/**
 	 * @return the nombre

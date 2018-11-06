@@ -1,19 +1,25 @@
 /**
  * 
  */
-package es.indra.aerolineas.bean;
+package es.indra.aerolineas.bean.impl;
+
+import es.indra.aerolineas.bean.IAerolinea;
+import es.indra.aerolineas.services.ReadFile;
 
 /**
  * @author josejarizav
  *
  *
  */
-public class Aerolinea {
+public class Aerolinea implements IAerolinea {
 	
 	private int id;
 	private String nombre;
 	private Vuelo[] vuelos = new Vuelo[10];
 	
+	/*
+	 * Constructor vacio
+	 */
 	public Aerolinea() {		
 	}
 
@@ -74,6 +80,10 @@ public class Aerolinea {
 	/*
 	 * Funcion para contar el numero de vuelos de un origen
 	 */
+	/* (non-Javadoc)
+	 * @see es.indra.aerolineas.bean.IAerolinea#consultarVuelos(java.lang.String)
+	 */
+	@Override
 	public int consultarVuelos(String origen) {
 		System.out.println("Llamada a metodo de 1 parametro: "+origen);
 		int vuelo=0;
@@ -83,10 +93,18 @@ public class Aerolinea {
 		}
 		return vuelo;
 	}
+	public void consultarVuelos2() {
+		ReadFile rf = new ReadFile();
+		rf.retornarVuelos2();
+	}
 	
 	/*
 	 * Funcion para contar el numero de vuelos entre un origen y un destino
 	 */
+	/* (non-Javadoc)
+	 * @see es.indra.aerolineas.bean.IAerolinea#consultarVuelos(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public int consultarVuelos(String origen, String destino) {
 		System.out.println("Llamada a metodo de 2 parametro: "+origen+" y "+destino);
 		int vuelo=0;
@@ -97,6 +115,10 @@ public class Aerolinea {
 		return vuelo;
 	}
 	
+	/* (non-Javadoc)
+	 * @see es.indra.aerolineas.bean.IAerolinea#anularVuelos(java.lang.String)
+	 */
+	@Override
 	public void anularVuelos(String... vuelos ) {
 		System.out.println("Numero de vuelos a anular: "+vuelos.length);
 	}

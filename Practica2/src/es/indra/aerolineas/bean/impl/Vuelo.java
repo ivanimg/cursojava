@@ -1,7 +1,7 @@
 /**
  * 
  */
-package es.indra.aerolineas.bean;
+package es.indra.aerolineas.bean.impl;
 
 /**
  * @author josejarizav

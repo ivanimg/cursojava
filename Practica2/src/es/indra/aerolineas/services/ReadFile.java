@@ -9,35 +9,40 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import es.indra.aerolineas.exceptions.ErrorLecturaDeVuelosException;
+
 /**
  * @author aula16
  *
  */
 public class ReadFile {
 	
+	List<String> contenido;
+	
 	public void retornarVuelos() {
-		Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
+		//Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
+		Path path = Paths.get("/Users/aula11/ivan/cursojava/Vuelos.txt");
 		
 		try {
 			List<String> contenido = Files.readAllLines(path);
 			System.out.println(contenido);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.out.println("Finalizada lectura de archivos");
 		}
 	}
 	
-	public void retornarVuelos2() {
-		Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
+	public List<String> retornarVuelos2() {
+		//Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
+		Path path = Paths.get("/Users/aula11/ivan/cursojava/Vuelos.txt");
 		//Path path = Paths.get(string);
 		try {
-			List<String> contenido = Files.readAllLines(path);
-			for (int i=0; i < contenido.size();i++)
-			{
-				System.out.println(contenido.get(i));				
-			}
+			return Files.readAllLines(path);
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new ErrorLecturaDeVuelosException("Fallo leyendo el archivo", e);
+		} finally {
+			System.out.println("Finalizada la lecuta e archivos");
 		}
+		return null;
 	}
 	
 	public static void main(String[] args) {

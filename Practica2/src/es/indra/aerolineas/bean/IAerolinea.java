@@ -13,6 +13,8 @@ public interface IAerolinea {
 	 * Funcion para contar el numero de vuelos entre un origen y un destino
 	 */
 	int consultarVuelos(String origen, String destino);
+	
+	public void consultarVuelos2();
 
 	void anularVuelos(String... vuelos);
 	

@@ -3,6 +3,8 @@
  */
 package es.indra.aerolineas.bean.impl;
 
+import java.util.List;
+
 import es.indra.aerolineas.bean.IAerolinea;
 import es.indra.aerolineas.services.ReadFile;
 
@@ -95,7 +97,10 @@ public class Aerolinea implements IAerolinea {
 	}
 	public void consultarVuelos2() {
 		ReadFile rf = new ReadFile();
-		rf.retornarVuelos2();
+		List<String> lista = rf.retornarVuelos2();
+		for (String listaVuelos : lista) {
+			System.out.println(listaVuelos);
+		}
 	}
 	
 	/*

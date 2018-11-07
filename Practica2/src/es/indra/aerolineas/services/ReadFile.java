@@ -31,7 +31,7 @@ public class ReadFile {
 		}
 	}
 	
-	public List<String> retornarVuelos2() {
+	public List<String> retornarVuelos2() throws ErrorLecturaDeVuelosException {
 		//Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
 		Path path = Paths.get("/Users/aula11/ivan/cursojava/Vuelos.txt");
 		//Path path = Paths.get(string);
@@ -42,12 +42,11 @@ public class ReadFile {
 		} finally {
 			System.out.println("Finalizada la lecuta e archivos");
 		}
-		return null;
 	}
 	
 	public static void main(String[] args) {
 		ReadFile r = new ReadFile();
 		r.retornarVuelos();
-		r.retornarVuelos2();
+		//r.retornarVuelos2();
 	}
 }

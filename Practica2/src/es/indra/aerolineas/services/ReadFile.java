@@ -31,17 +31,20 @@ public class ReadFile {
 		}
 	}
 	
-	public List<String> retornarVuelos2() throws ErrorLecturaDeVuelosException {
+	public List<String> retornarVuelos2() {
 		//Path path = Paths.get("/Users/aula16/repositorios/CursoJava/vuelos.txt");
 		Path path = Paths.get("/Users/aula11/ivan/cursojava/Vuelos.txt");
 		//Path path = Paths.get(string);
-		try {
-			return Files.readAllLines(path);
-		} catch (IOException e) {
-			throw new ErrorLecturaDeVuelosException("Fallo leyendo el archivo", e);
-		} finally {
-			System.out.println("Finalizada la lecuta e archivos");
-		}
+			try {
+				return Files.readAllLines(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				//throw new ErrorLecturaDeVuelosException("Fallo leyendo el archivo", e);
+			/*} finally {
+				System.out.println("Finalizada lectura de archivos");*/
+			}
+			return contenido;
 	}
 	
 	public static void main(String[] args) {

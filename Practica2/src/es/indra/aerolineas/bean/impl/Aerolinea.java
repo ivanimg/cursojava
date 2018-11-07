@@ -3,7 +3,9 @@
  */
 package es.indra.aerolineas.bean.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import es.indra.aerolineas.bean.IAerolinea;
 import es.indra.aerolineas.services.ReadFile;
@@ -126,6 +128,15 @@ public class Aerolinea implements IAerolinea {
 	@Override
 	public void anularVuelos(String... vuelos ) {
 		System.out.println("Numero de vuelos a anular: "+vuelos.length);
+	}
+	
+	public void verBilletePorFecha(String fecha){
+		Map<String, String> venta = new HashMap<>();; //Cada venta tiene un pasajero y un mapa de billetes
+		Map<Integer, Map> billete = new HashMap<>();; //Cada billete tiene un vuelo y un numero
+		for(int i=0; i<vuelos.length; i++) {
+			billete.put(vuelos[i], value);
+		}
+		
 	}
 	
 	

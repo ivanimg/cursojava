@@ -3,6 +3,10 @@
  */
 package es.indra.aerolineas.bean.impl;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -131,15 +135,12 @@ public class Aerolinea implements IAerolinea {
 	}
 	
 	public void verBilletePorFecha(String fecha){
-		Map<String, String> venta = new HashMap<>();; //Cada venta tiene un pasajero y un mapa de billetes
-		Map<Integer, Map> billete = new HashMap<>();; //Cada billete tiene un vuelo y un numero
+		//Map<String, String> venta = new HashMap<>();; //Cada venta tiene un pasajero y un mapa de billetes
+		//Map<Integer, Map> billete = new HashMap<>();; //Cada billete tiene un vuelo y un numero
 		for(int i=0; i<vuelos.length; i++) {
-			billete.put(vuelos[i], value);
+			//billete.put(vuelos[i], value);
 		}
 		
 	}
 	
-	
-	
-
 }

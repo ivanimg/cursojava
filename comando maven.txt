@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=es.indra -DartifactId=demo-maven -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false

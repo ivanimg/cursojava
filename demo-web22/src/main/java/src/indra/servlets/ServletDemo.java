@@ -58,24 +58,16 @@ public class ServletDemo extends HttpServlet {
 		Cookie [] cookies = request.getCookies();
 		Cookie idioma = new Cookie("idioma",idiom);
 		// hacemos que nuestra cookie tenga sentido durante un día
-		idioma.setMaxAge(60*60*24);
-		boolean prim = true;
-		
+		idioma.setMaxAge(60*60*24);		
 		
 		for(int i=0; i<cookies.length; i++)
 		{
 			Cookie cookieActual = cookies[i];
 			String identificador = cookieActual.getName();
-			//System.out.println("dentro del for "+i+" identificador es "+cookieActual.getName()+"valor "+identificador.equals("idioma"));
 			String valor = cookieActual.getValue();
 			if(identificador.equals("idioma"))
 			{
-				System.out.println(i+" dentro del if "+cookieActual.getName());
-				System.out.println("id "+cookieActual.getValue());
-				if (prim) {
-					session.setAttribute("idioma", valor.toString());
-					prim = false;
-				}
+				session.setAttribute("idioma", valor.toString());
 			}
 			response.addCookie(idioma);
 		}

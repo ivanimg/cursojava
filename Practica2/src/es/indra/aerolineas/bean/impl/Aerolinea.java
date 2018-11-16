@@ -134,7 +134,7 @@ public class Aerolinea implements IAerolinea {
 		Map<String, String> venta = new HashMap<>();; //Cada venta tiene un pasajero y un mapa de billetes
 		Map<Integer, Map> billete = new HashMap<>();; //Cada billete tiene un vuelo y un numero
 		for(int i=0; i<vuelos.length; i++) {
-			billete.put(vuelos[i], value);
+			//billete.put(vuelos[i], value);
 		}
 		
 	}

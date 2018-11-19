@@ -9,10 +9,17 @@ package es.indra.aerolineas.bean.impl;
  */
 public class Empleado extends Persona {
 
+	/**
+	 * @return the nombre
+	 */
+	@Override
+	public String getNombre() {
+		return nombre;
+
+}
 	@Override
 	public String solicitarInformacion() {
-		// TODO Auto-generated method stub
-		return null;
+		return "";
 	}
 
 }

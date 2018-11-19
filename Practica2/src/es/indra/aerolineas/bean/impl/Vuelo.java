@@ -10,15 +10,16 @@ package es.indra.aerolineas.bean.impl;
  */
 public class Vuelo {
 
-	private  int id;
+	private int id;
 	private String numeroVuelo;
 	private String origen;
 	private String destino;
 	private int numeroPasajeros;
 	private boolean disponible;
-	
-	public Vuelo() {}
-	
+
+	public Vuelo() {
+	}
+
 	public Vuelo(int id) {
 		this.id = id;
 	}
@@ -115,6 +116,16 @@ public class Vuelo {
 	 */
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Vuelo [numeroVuelo=" + numeroVuelo + ", origen=" + origen + ", destino=" + destino + "]";
 	}
 
 }

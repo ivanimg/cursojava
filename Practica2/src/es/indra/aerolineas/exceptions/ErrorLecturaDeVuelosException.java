@@ -3,8 +3,8 @@
  */
 package es.indra.aerolineas.exceptions;
 
+@SuppressWarnings("serial")
 public class ErrorLecturaDeVuelosException extends Exception {
-
 
 	public ErrorLecturaDeVuelosException(String message) {
 		super(message);

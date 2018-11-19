@@ -7,7 +7,7 @@ public class MiHilo implements Runnable {
 	int a[];
 	int resp;
 	
-	MiHilo (String nombre, int nums[]){
+	public MiHilo (String nombre, int nums[]){
 		hilo = new Thread(this,nombre);
 		a=nums;
 	}

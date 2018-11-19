@@ -11,7 +11,7 @@ public class Sincronizacion {
 			mh1.hilo.join();
 			mh2.hilo.join();
 		} catch (InterruptedException exc) {
-			System.out.println("Hilo principal interrumpido.");
+			exc.printStackTrace();
 		}
 	}
 

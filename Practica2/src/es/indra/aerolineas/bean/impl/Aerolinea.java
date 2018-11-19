@@ -3,15 +3,12 @@
  */
 package es.indra.aerolineas.bean.impl;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import es.indra.aerolineas.bean.IAerolinea;
+import es.indra.aerolineas.exceptions.ErrorLecturaDeVuelosException;
 import es.indra.aerolineas.services.ReadFile;
 
 /**
@@ -20,23 +17,20 @@ import es.indra.aerolineas.services.ReadFile;
  *
  */
 public class Aerolinea implements IAerolinea {
-	
+
 	private int id;
 	private String nombre;
-	private Vuelo[] vuelos = new Vuelo[10];
-	
-	/*
-	 * Constructor vacio
-	 */
-	public Aerolinea() {		
-	}
+	private List<Vuelo> vuelos = new ArrayList<>();
+	private Map<String, List<Billete>> billetes;
+
+	public Aerolinea() {}
 
 	/**
 	 * @param id
 	 * @param nombre
 	 * @param vuelos
 	 */
-	public Aerolinea(int id, String nombre, Vuelo[] vuelos) {
+	public Aerolinea(int id, String nombre, List<Vuelo> vuelos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -60,6 +54,7 @@ public class Aerolinea implements IAerolinea {
 	/**
 	 * @return the nombre
 	 */
+	@Override
 	public String getNombre() {
 		return nombre;
 	}
@@ -74,73 +69,109 @@ public class Aerolinea implements IAerolinea {
 	/**
 	 * @return the vuelos
 	 */
-	public Vuelo[] getVuelos() {
+	@Override
+	public List<Vuelo> getVuelos() {
 		return vuelos;
 	}
 
 	/**
 	 * @param vuelos the vuelos to set
 	 */
-	public void setVuelos(Vuelo[] vuelos) {
+	public void setVuelos(List<Vuelo> vuelos) {
 		this.vuelos = vuelos;
 	}
 
+	/**
+	 * @return the billetes
+	 */
+	public Map<String, List<Billete>> getBilletes() {
+		return billetes;
+	}
+
+	/**
+	 * @param billetes the billetes to set
+	 */
+	public void setBilletes(Map<String, List<Billete>> billetes) {
+		this.billetes = billetes;
+	}
+
 	/*
-	 * Funcion para contar el numero de vuelos de un origen
-	 */
-	/* (non-Javadoc)
-	 * @see es.indra.aerolineas.bean.IAerolinea#consultarVuelos(java.lang.String)
+	 * (non-Javadoc)
+	 * 
+	 * @see es.indra.aerolineas.beans.IAerolinea#consultarVuelos(java.lang.String)
 	 */
 	@Override
-	public int consultarVuelos(String origen) {
-		System.out.println("Llamada a metodo de 1 parametro: "+origen);
-		int vuelo=0;
-		for(int i=0; i<vuelos.length; i++) {
-			if(this.vuelos[i].getOrigen()==origen)
-				vuelo++;
+	public void consultarVuelos(String origen) {
+		ReadFile read = new ReadFile();
+		List<String> vuelosEncontrados = new ArrayList<String>();
+		try {
+			vuelosEncontrados = read.retornarVuelos();
+			if (vuelosEncontrados != null && !vuelosEncontrados.isEmpty()) {
+				for (String vuelo : vuelosEncontrados) {
+					System.out.println(vuelo);
+				}
+			} else {
+				System.out.println("No se encontraron vuelos");
+			}
+		} catch (ErrorLecturaDeVuelosException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return vuelo;
 	}
-	public void consultarVuelos2() {
-		ReadFile rf = new ReadFile();
-		List<String> lista = rf.retornarVuelos2();
-		for (String listaVuelos : lista) {
-			System.out.println(listaVuelos);
-		}
-	}
-	
+
 	/*
-	 * Funcion para contar el numero de vuelos entre un origen y un destino
-	 */
-	/* (non-Javadoc)
-	 * @see es.indra.aerolineas.bean.IAerolinea#consultarVuelos(java.lang.String, java.lang.String)
-	 */
-	@Override
-	public int consultarVuelos(String origen, String destino) {
-		System.out.println("Llamada a metodo de 2 parametro: "+origen+" y "+destino);
-		int vuelo=0;
-		for(int i=0; i<vuelos.length; i++) {
-			if(this.vuelos[i].getOrigen()==origen && this.vuelos[i].getDestino()==destino)
-				vuelo++;
-		}
-		return vuelo;
-	}
-	
-	/* (non-Javadoc)
-	 * @see es.indra.aerolineas.bean.IAerolinea#anularVuelos(java.lang.String)
+	 * (non-Javadoc)
+	 * 
+	 * @see es.indra.aerolineas.beans.IAerolinea#consultarVuelos(java.lang.String,
+	 * java.lang.String)
 	 */
 	@Override
-	public void anularVuelos(String... vuelos ) {
-		System.out.println("Numero de vuelos a anular: "+vuelos.length);
+	public void consultarVuelos(String origen, String destino) {
+		System.out.printf("Metodo de 2 parametros: %s y %s %n", origen, destino);
 	}
-	
-	public void verBilletePorFecha(String fecha){
-		//Map<String, String> venta = new HashMap<>();; //Cada venta tiene un pasajero y un mapa de billetes
-		//Map<Integer, Map> billete = new HashMap<>();; //Cada billete tiene un vuelo y un numero
-		for(int i=0; i<vuelos.length; i++) {
-			//billete.put(vuelos[i], value);
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see es.indra.aerolineas.beans.IAerolinea#anularVuelos(java.lang.String)
+	 */
+	@Override
+	public void anularVuelos(String... vuelos) {
+		System.out.println("Numero de vuelos a anular: " + vuelos.length);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Aerolinea [nombre=" + nombre + "]";
+	}
+
+	@Override
+	public void verBilletesPorFecha(String fechaBillete) {
+
+		System.out.println("Billetes para: ".concat(fechaBillete));
+
+		List<Billete> billetePorDia = this.billetes.get(fechaBillete);
+		if (billetePorDia != null && !billetePorDia.isEmpty()) {
+			for (Billete b : billetePorDia) {
+				System.out.println("\t" + b);
+			}
 		}
-		
+
+		/*
+		 * // RECORRIDO COMPLETO for (Map.Entry<String, List<Billete>> billete :
+		 * this.billetes.entrySet()) {
+		 * System.out.println("Billetes para el día ".concat(billete.getKey())); for
+		 * (Billete b : billete.getValue()) { System.out.println("\t" + b); }
+		 * System.out.println(
+		 * "________________________________________________________________________________________"
+		 * );
+		 * 
+		 * }
+		 */
 	}
-	
 }
